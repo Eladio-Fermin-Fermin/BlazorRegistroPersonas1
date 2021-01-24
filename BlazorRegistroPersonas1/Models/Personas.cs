@@ -10,16 +10,15 @@ namespace BlazorRegistroPersonas1.Models
     {
         [Key]
         public int PersonaId { get; set; }
-
+        [Required(ErrorMessage = "Es obligatorio introducir un Nombre.")]
         public string Nombres { get; set; }
-
+        [Required(ErrorMessage = "Es obligatorio introducir un Número Telefónico .")]
         public string Telefono { get; set; }
-
+        [Required(ErrorMessage = "Es obligatorio introducir una Cédula.")]
         public string Cedula { get; set; }
-
+        [Required(ErrorMessage = "Es obligatorio introducir una dirección.")]
         public string Direccion { get; set; }
-
+        [Required(ErrorMessage = "Es obligatorio introducir una fecha de nacimiento")]
         public DateTime FechaNacimiento { get; set; }
-
     }
 }
