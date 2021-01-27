@@ -1,4 +1,5 @@
 using Blazored.Toast;
+using BlazorRegistroPersonas1.BLL;
 using BlazorRegistroPersonas1.DAL;
 using BlazorRegistroPersonas1.Data;
 using Microsoft.AspNetCore.Builder;
@@ -34,6 +35,7 @@ namespace BlazorRegistroPersonas1
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
             services.AddDbContext<Contexto>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection"))); services.AddBlazoredToast();
+            services.AddTransient<PersonasBLL>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

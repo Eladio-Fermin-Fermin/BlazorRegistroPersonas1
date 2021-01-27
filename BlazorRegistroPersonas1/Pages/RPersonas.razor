@@ -5,58 +5,70 @@
 @inject PersonasBLL PersonasBLL
 @inject IToastService toast
 
-<EditForm Model="Personas" OnValidSubmit="Guardar">
+<EditForm Model="personas" OnValidSubmit="Guardar">
     <DataAnnotationsValidator />
     <div class="card">
         <div class="card-header">
-            <h3>Registro Personas</h3>
+            <h3>Registro de Personas</h3>
         </div>
         <div class="card-body">
             <form>
-                <div class="form-row align-items-center">
-                    <div class="col">
-                        <div class="form-group">
-                            <label>Persona Id</label>
-                            <div class="input-group">
-                                <InputNumber @bind-Value="Personas.PersonaId" class="form-control" />
-                                <div class="input-group-append">
-                                    <button type="button" style="z-index:0" class="btn btn-secondary input-group-text" @onclick="Buscar">Buscar</button>
+                <div class="shadow p-3 mb-5 bg-white rounded">
+                    <div class="form-row align-items-center">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Persona Id</label>
+                                <div class="input-group">
+                                    <InputNumber @bind-Value="personas.PersonaId" class="form-control" />
+                                    <div class="input-group-append">
+                                        <button type="button" style="z-index:0" class="btn btn-secondary input-group-text" @onclick="Buscar">Buscar</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label>Nombres</label>
-                    <InputText @bind-Value="Personas.Nombres" class="form-control" />
-                    <ValidationMessage For="@(() => Personas.Nombres)" />
+                <div class="shadow p-3 mb-5 bg-white rounded">
+                    <div class="form-group">
+                        <label>Nombres</label>
+                        <InputText @bind-Value="personas.Nombres" class="form-control" />
+                        <ValidationMessage For="@(() => personas.Nombres)" />
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Teléfono</label>
-                    <InputText @bind-Value="Personas.Telefono" class="form-control" />
-                    <ValidationMessage For="@(() => Personas.Telefono)" />
+                <div class="shadow p-3 mb-5 bg-white rounded">
+                    <div class="form-group">
+                        <label>Teléfono</label>
+                        <InputText @bind-Value="personas.Telefono" class="form-control" />
+                        <ValidationMessage For="@(() => personas.Telefono)" />
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Cédula</label>
-                    <InputText @bind-Value="Personas.Cedula" class="form-control" />
-                    <ValidationMessage For="(() => Personas.Cedula)" />
+                <div class="shadow p-3 mb-5 bg-white rounded">
+                    <div class="form-group">
+                        <label>Cédula</label>
+                        <InputText @bind-Value="personas.Cedula" class="form-control" />
+                        <ValidationMessage For="(() => personas.Cedula)" />
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Dirección</label>
-                    <InputText @bind-Value="Personas.Direccion" class="form-control" />
-                    <ValidationMessage For="(() => Personas.Direccion)" />
+                <div class="shadow p-3 mb-5 bg-white rounded">
+                    <div class="form-group">
+                        <label>Dirección</label>
+                        <InputText @bind-Value="personas.Direccion" class="form-control" />
+                        <ValidationMessage For="(() => personas.Direccion)" />
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Fecha Nacimiento</label>
-                    <InputDate @bind-Value="Personas.FechaNacimiento" class="form-control" />
-                    <ValidationMessage For="(() => Personas.FechaNacimiento)" />
+                <div class="shadow p-3 mb-5 bg-white rounded">
+                    <div class="form-group">
+                        <label>Fecha Nacimiento</label>
+                        <InputDate @bind-Value="personas.FechaNacimiento" class="form-control" />
+                        <ValidationMessage For="(() => personas.FechaNacimiento)" />
+                    </div>
                 </div>
             </form>
         </div>
         <div class="card-footer">
             <div class="form-group text-center" display: inline-block>
                 <button type="button" class="btn btn-primary" @onclick="Nuevo">Nuevo</button>
-                <button type="submit" class="btn btn-success" Guardar">Guardar</button>
+                <button type="submit" class="btn btn-success" @onclick">Guardar</button>
                 <button type="button" class="btn btn-danger" @onclick="Eliminar">Eliminar</button>
             </div>
         </div>
@@ -70,7 +82,7 @@
     [Parameter]
     public int PersonaId { get; set; }
 
-    private Personas Personas = new Personas();
+    private Personas personas = new Personas();
 
     protected override void OnInitialized()
     {
@@ -79,10 +91,10 @@
 
     public async void Buscar()
     {
-        var registro = await PersonasBLL.Buscar(Personas.PersonaId);
+        var registro = await PersonasBLL.Buscar(personas.PersonaId);
         if (registro != null)
         {
-            this.Personas = registro;
+            this.personas = registro;
         }
         else
         {
@@ -96,7 +108,7 @@
     public async void Guardar()
     {
 
-        if (await PersonasBLL.Guardar(Personas))
+        if (await PersonasBLL.Guardar(personas))
         {
             toast.ShowSuccess("Guardado");
             Limpiar();
@@ -108,7 +120,7 @@
     }
     public async void Eliminar()
     {
-        if (await PersonasBLL.Eliminar(Personas.PersonaId))
+        if (await PersonasBLL.Eliminar(personas.PersonaId))
         {
             toast.ShowSuccess("Eliminado");
             Limpiar();
@@ -120,7 +132,7 @@
     }
     public void Limpiar()
     {
-        this.Personas = new Personas();
+        this.personas = new Personas();
     }
 
 }
