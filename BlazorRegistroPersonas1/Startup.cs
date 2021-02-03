@@ -36,7 +36,7 @@ namespace BlazorRegistroPersonas1
             services.AddSingleton<WeatherForecastService>();
             services.AddDbContext<Contexto>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection"))); services.AddBlazoredToast();
             //Se inyecto la BLL.
-            services.AddTransient<PersonasBLL>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
