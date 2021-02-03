@@ -35,6 +35,7 @@ namespace BlazorRegistroPersonas1
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
             services.AddDbContext<Contexto>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection"))); services.AddBlazoredToast();
+            //Se inyecto la BLL.
             services.AddTransient<PersonasBLL>();
         }
 
